@@ -89,3 +89,8 @@ export const uploadFileToIPFS = async(file) => {
 
     });
 };
+
+// export const deletePinataNFT = async(delele) => {
+//     const url = `https://api.pinata.cloud/pinning/unpin/:CID`;
+
+// }

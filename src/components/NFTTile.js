@@ -1,22 +1,30 @@
-import axie from "../tile.jpeg";
+
+import './NFTTile.css';
 import {
     BrowserRouter as Router,
     Link,
   } from "react-router-dom";
+  import { GetIpfsUrlFromPinata } from "../utils";
 
 function NFTTile (data) {
     const newTo = {
         pathname:"/nftPage/"+data.data.tokenId
     }
+
+    const IPFSUrl = GetIpfsUrlFromPinata(data.data.image);
+
     return (
         <Link to={newTo}>
-        <div className="border-2 ml-12 mt-5 mb-12 flex flex-col items-center rounded-lg w-48 md:w-72 shadow-2xl">
-            <img src={data.data.image} alt="" className="w-72 h-80 rounded-lg object-cover" />
-            <div className= "text-white w-full p-2 bg-gradient-to-t from-[#454545] to-transparent rounded-lg pt-5 -mt-20">
-                <strong className="text-xl">{data.data.name}</strong>
-                <p className="display-inline">
+        <div className="relative">
+            <img src={IPFSUrl} alt="" className="w-72 h-80 rounded-lg object-cover max-h-[170px]" crossOrigin="anonymous" />
+            <div className= "card-item-title rounded-b-lg absolute bottom-[-60px] w-full z-[-1]">
+                <h3 className="font-semibold text-[16px] text-white text-left" >{data.data.name}</h3>
+                <p className="mt-[5px] font-epilogue font-normal text-[#808191] text-left leading-[18px] truncate">
                     {data.data.description}
                 </p>
+                {/* <h4 className="font-epilogue font-semibold text-[14px] text-[#b2b3bd] leading-[22px]">{data.price + "ETH"}</h4> */}
+
+
             </div>
         </div>
         </Link>
